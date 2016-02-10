@@ -1,8 +1,8 @@
 package com.maximegens.ambassadedefrance;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 
 import android.view.MenuItem;
 
@@ -11,12 +11,12 @@ import android.view.MenuItem;
  * An activity representing a single Ambassade detail screen. This
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link AmbassadeListActivity}.
+ * in a {@link MainActivity}.
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link AmbassadeDetailFragment}.
  */
-public class AmbassadeDetailActivity extends ActionBarActivity {
+public class AmbassadeDetailActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class AmbassadeDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_ambassade_detail);
 
         // Show the Up button in the action bar.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -43,7 +43,7 @@ public class AmbassadeDetailActivity extends ActionBarActivity {
                     getIntent().getStringExtra(AmbassadeDetailFragment.ARG_ITEM_ID));
             AmbassadeDetailFragment fragment = new AmbassadeDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .add(R.id.ambassade_detail_container, fragment)
                     .commit();
         }
@@ -59,7 +59,7 @@ public class AmbassadeDetailActivity extends ActionBarActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, AmbassadeListActivity.class));
+            navigateUpTo(new Intent(this, MainActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

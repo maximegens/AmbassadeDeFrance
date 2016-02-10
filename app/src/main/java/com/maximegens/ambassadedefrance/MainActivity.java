@@ -1,8 +1,12 @@
 package com.maximegens.ambassadedefrance;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.maximegens.ambassadedefrance.Beans.Ambassade;
+import com.maximegens.ambassadedefrance.Beans.Ambassades;
 
 
 /**
@@ -21,7 +25,7 @@ import android.support.v4.app.FragmentActivity;
  * {@link AmbassadeListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class AmbassadeListActivity extends FragmentActivity
+public class MainActivity extends Activity
         implements AmbassadeListFragment.Callbacks {
 
     /**
@@ -33,23 +37,11 @@ public class AmbassadeListActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ambassade_list);
+        setContentView(R.layout.main_activity);
 
         if (findViewById(R.id.ambassade_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-large and
-            // res/values-sw600dp). If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
-
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-            ((AmbassadeListFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.ambassade_list))
-                    .setActivateOnItemClick(true);
         }
-
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     /**
@@ -66,7 +58,7 @@ public class AmbassadeListActivity extends FragmentActivity
             arguments.putString(AmbassadeDetailFragment.ARG_ITEM_ID, id);
             AmbassadeDetailFragment fragment = new AmbassadeDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .replace(R.id.ambassade_detail_container, fragment)
                     .commit();
 
