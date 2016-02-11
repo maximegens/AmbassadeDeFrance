@@ -3,7 +3,6 @@ package com.maximegens.ambassadedefrance;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,56 +15,39 @@ import com.maximegens.ambassadedefrance.Beans.Ambassade;
 import com.maximegens.ambassadedefrance.Beans.Ambassades;
 
 /**
- * A list fragment representing a list of LesAmbassades. This fragment
- * also supports tablet devices by allowing list items to be given an
- * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link AmbassadeDetailFragment}.
- * <p/>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
+ * Classe AmbassadeListFragment.
  */
 public class AmbassadeListFragment extends Fragment {
 
-    ListView listeAmabassade;
-
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
     private int mActivatedPosition = ListView.INVALID_POSITION;
-
-
-    /**
-     * The fragment's current callback object, which is notified of list item
-     * clicks.
-     */
-    private Callbacks mCallbacks = sAmbassadeCallbacks;
+    ListView listeAmabassade;
 
     /**
-     * A callback interface that all activities containing this fragment must
-     * implement. This mechanism allows activities to be notified of item
-     * selections.
-     */
-    public interface Callbacks {
-        /**
-         * Callback for when an item has been selected.
-         */
-         void onItemSelected(String id);
-    }
-
-    /**
-     * A dummy implementation of the {@link Callbacks} interface that does
-     * nothing. Used only when this fragment is not attached to an activity.
-     */
-    private static Callbacks sAmbassadeCallbacks = new Callbacks() {
-        @Override
-        public void onItemSelected(String id) {
-        }
-    };
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
+     * Constructeur du Fragement.
      */
     public AmbassadeListFragment() {
     }
+
+    // La Callback qui notifiera l'activity d'un changement.
+    private Callbacks mCallbacks = sAmbassadeCallbacks;
+
+    /**
+     * Interface Callback.
+     */
+    public interface Callbacks {
+         void onItemSelected(Ambassade ambassade);
+    }
+
+    /**
+     * La methode de notification.
+     */
+    private static Callbacks sAmbassadeCallbacks = new Callbacks() {
+        @Override
+        public void onItemSelected(Ambassade ambassade) {
+        }
+    };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,16 +60,15 @@ public class AmbassadeListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View myInflatedView = inflater.inflate(R.layout.liste_ambassades_view, container,false);
+
         listeAmabassade = (ListView)myInflatedView.findViewById(R.id.list_view_ambassades);
-        listeAmabassade.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        ArrayAdapter<Ambassade> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, android.R.id.text1, Ambassades.lesAmbassades);
-        listeAmabassade.setAdapter(adapter);
+        AdapterItemAmbassade adapterListeAmbassade = new AdapterItemAmbassade(getActivity(),Ambassades.lesAmbassades);
+        listeAmabassade.setAdapter(adapterListeAmbassade);
 
         listeAmabassade.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                mCallbacks.onItemSelected(String.valueOf(Ambassades.lesAmbassades.get(position).getId()));
+                mCallbacks.onItemSelected(Ambassades.lesAmbassades.get(position));
             }
         });
 
@@ -108,7 +89,6 @@ public class AmbassadeListFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        // Activities containing this fragment must implement its callbacks.
         if (!(activity instanceof Callbacks)) {
             throw new IllegalStateException("Activity must implement fragment's callbacks.");
         }
@@ -126,7 +106,7 @@ public class AmbassadeListFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mActivatedPosition != ListView.INVALID_POSITION) {
-            // Serialize and persist the activated item position.
+            // Serialise et enregistrement la position de l'item selectionné
             outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
         }
     }
@@ -142,6 +122,15 @@ public class AmbassadeListFragment extends Fragment {
             listeAmabassade.setItemChecked(position, true);
         }
         mActivatedPosition = position;
+    }
+
+    /**
+     * Active le mode "selectionné" pour un item. Permet de voir visuellement quel item est sélectionné ( uniquement pour twoPanel)
+     */
+    public void setActivateOnItemClick(boolean activateOnItemClick) {
+        listeAmabassade.setChoiceMode(activateOnItemClick
+                ? ListView.CHOICE_MODE_SINGLE
+                : ListView.CHOICE_MODE_NONE);
     }
 
 }

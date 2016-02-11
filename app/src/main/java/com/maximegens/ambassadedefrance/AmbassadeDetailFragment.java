@@ -12,10 +12,7 @@ import com.maximegens.ambassadedefrance.Beans.Ambassade;
 import com.maximegens.ambassadedefrance.Beans.Ambassades;
 
 /**
- * A fragment representing a single Ambassade detail screen.
- * This fragment is either contained in a {@link MainActivity}
- * in two-pane mode (on tablets) or a {@link AmbassadeDetailActivity}
- * on handsets.
+ * Classe AmbassadeDetailFragment
  */
 public class AmbassadeDetailFragment extends Fragment {
     /**
@@ -24,14 +21,10 @@ public class AmbassadeDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private Ambassade mItem;
 
     /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
+     * Constructeur.
      */
     public AmbassadeDetailFragment() {
     }
@@ -40,22 +33,16 @@ public class AmbassadeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            if(getArguments() != null){
-                mItem = Ambassades.lesAmbassades.get(Integer.valueOf(getArguments().getString(ARG_ITEM_ID)));
-            }
+        if (getArguments() != null && getArguments().containsKey(ARG_ITEM_ID)) {
+            mItem = getArguments().getParcelable(ARG_ITEM_ID);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_ambassade_detail, container, false);
+        View rootView = inflater.inflate(R.layout.ambassade_detail_fragment, container, false);
 
-        // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.ambassade_detail)).setText(mItem.getNom());
         }

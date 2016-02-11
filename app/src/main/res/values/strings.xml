@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Ambassades de France</string>
-    <string name="title_ambassade_detail">Ambassade Detail</string>
+    <string name="title_ambassade_detail">Description de l\'ambassade</string>
 </resources>
