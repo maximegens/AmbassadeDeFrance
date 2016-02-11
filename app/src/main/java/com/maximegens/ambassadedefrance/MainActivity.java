@@ -1,12 +1,13 @@
 package com.maximegens.ambassadedefrance;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.maximegens.ambassadedefrance.Beans.Ambassade;
+import com.maximegens.ambassadedefrance.beans.Ambassade;
+import com.maximegens.ambassadedefrance.views.AmbassadeDetailActivity;
+import com.maximegens.ambassadedefrance.views.AmbassadeDetailFragment;
+import com.maximegens.ambassadedefrance.views.AmbassadeListFragment;
 
 /**
  * MainActivity

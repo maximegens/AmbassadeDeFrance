@@ -1,10 +1,13 @@
-package com.maximegens.ambassadedefrance;
+package com.maximegens.ambassadedefrance.views;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+
+import com.maximegens.ambassadedefrance.MainActivity;
+import com.maximegens.ambassadedefrance.R;
 
 /**
  * Classe AmbassadeDetailActivity.

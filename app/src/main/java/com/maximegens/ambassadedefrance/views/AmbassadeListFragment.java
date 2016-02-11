@@ -1,4 +1,4 @@
-package com.maximegens.ambassadedefrance;
+package com.maximegens.ambassadedefrance.views;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -7,12 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-import com.maximegens.ambassadedefrance.Beans.Ambassade;
-import com.maximegens.ambassadedefrance.Beans.Ambassades;
+import com.maximegens.ambassadedefrance.R;
+import com.maximegens.ambassadedefrance.beans.Ambassade;
+import com.maximegens.ambassadedefrance.beans.Ambassades;
+import com.maximegens.ambassadedefrance.adapters.AdapterItemAmbassade;
 
 /**
  * Classe AmbassadeListFragment.

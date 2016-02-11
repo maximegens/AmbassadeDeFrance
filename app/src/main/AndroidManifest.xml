@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AmbassadeDetailActivity"
+            android:name=".views.AmbassadeDetailActivity"
             android:label="@string/title_ambassade_detail"
             android:parentActivityName=".MainActivity" >
             <meta-data

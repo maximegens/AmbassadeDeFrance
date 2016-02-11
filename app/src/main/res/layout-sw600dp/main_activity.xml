@@ -17,7 +17,7 @@
     -->
 
     <fragment android:id="@+id/ambassade_list"
-        android:name="com.maximegens.ambassadedefrance.AmbassadeListFragment"
+        android:name="com.maximegens.ambassadedefrance.views.AmbassadeListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -1,4 +1,4 @@
-package com.maximegens.ambassadedefrance;
+package com.maximegens.ambassadedefrance.views;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.maximegens.ambassadedefrance.Beans.Ambassade;
-import com.maximegens.ambassadedefrance.Beans.Ambassades;
+import com.maximegens.ambassadedefrance.R;
+import com.maximegens.ambassadedefrance.beans.Ambassade;
 
 /**
  * Classe AmbassadeDetailFragment
